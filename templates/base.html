@@ -1,0 +1,67 @@
+<!-- base.html -->
+
+<!doctype html>
+<html lang="en">
+
+<head>
+    {% load static %}
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="{% static 'favicon.png' %}">
+
+    <!-- Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Jost:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka+One&amp;family=Lora:wght@400;700&amp;family=Montserrat:wght@400;500;600;700&amp;family=Nunito:wght@400;700&amp;display=swap" rel="stylesheet">
+
+    <!-- Libs CSS -->
+    <!-- Add your libs CSS links here -->
+
+    <!-- Theme CSS -->
+    <link rel="stylesheet" href="{% static 'assets/css/theme.min.css' %}">
+
+    <title>Skola Home v5</title>
+
+</head>
+<body>
+
+    {% include 'components/modals.html' %}
+
+    {% include 'components/header.html' %}
+    
+    <!-- Display uploaded courses -->
+    <div class="container">
+        <h2>Uploaded Courses</h2>
+        <div class="row">
+            {% for course in uploaded_courses %}
+                <div class="col-md-4 mb-4">
+                    <div class="card">
+                        <a href="{% url 'course_overview' course.id %}">
+                            <img src="{{ course.image.url }}" class="card-img-top" alt="{{ course.title }}">
+                        </a>
+                        <div class="card-body">
+                            <h5 class="card-title">
+                                <a href="{% url 'course_overview' course.id %}">{{ course.title }}</a>
+                            </h5>
+                            <!-- Add more course details as needed -->
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+
+    {% block content %} {% endblock %}
+
+    <!-- JAVASCRIPT
+    ================================================== -->
+    <!-- Libs JS -->
+    <!-- Add your libs JS links here -->
+
+    <!-- Theme JS -->
+    <script src="{% static 'assets/js/theme.min.js' %}"></script>
+
+</body>
+</html>
