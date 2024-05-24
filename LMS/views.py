@@ -121,7 +121,6 @@ def student_results(request):
     assignment_results = AssignmentResult.objects.all().select_related('student', 'assignment')
     return render(request, 'student_results.html', {'results': results, 'assignment_results': assignment_results})
 
-
 def create_payout_statement(request):
     if request.method == 'POST':
         form = PayoutStatementForm(request.POST, request.FILES)

@@ -36,6 +36,7 @@
                 <th>Student Name</th>
                 <th>Assignment Title</th>
                 <th>Score</th>
+                <th>Comment</th>
             </tr>
         </thead>
         <tbody>
@@ -45,6 +46,7 @@
                 <td>{{ assignment_result.student.name }}</td>
                 <td>{{ assignment_result.assignment.title }}</td>
                 <td>{{ assignment_result.score }}</td>
+                <td>{{ assignment_result.comment }}</td>
             </tr>
             {% endfor %}
         </tbody>

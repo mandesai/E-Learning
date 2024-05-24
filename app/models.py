@@ -73,6 +73,7 @@ class AssignmentResult(models.Model):
     student = models.ForeignKey(Student, on_delete=models.CASCADE)
     assignment = models.ForeignKey(Assignment, on_delete=models.CASCADE)
     score = models.IntegerField()
+    comment = models.TextField(blank=True)
 
     def __str__(self):
         return f'{self.student.name} - {self.assignment.title} - {self.score}'
