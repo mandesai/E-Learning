@@ -76,3 +76,11 @@ class AssignmentResult(models.Model):
 
     def __str__(self):
         return f'{self.student.name} - {self.assignment.title} - {self.score}'
+
+class PayoutStatement(models.Model):
+    payment_details = models.CharField(max_length=200)
+    image = models.ImageField(upload_to='payout_images/', blank=True, null=True)
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return self.payment_details

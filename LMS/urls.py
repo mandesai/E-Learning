@@ -36,6 +36,8 @@ urlpatterns = [
     path('result/<int:student_id>/', views.view_result, name='view_result'),
     path('result/&lt;int:student_id&gt;/', views.view_result, name='view_result'),
     path('student_results/', views.student_results, name='student_results'),
+    path('create/', views.create_payout_statement, name='create_payout_statement'),
+    path('list/', views.payout_statement_list, name='payout_statement_list'),
 ]
 
 if settings.DEBUG:

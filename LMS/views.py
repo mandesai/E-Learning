@@ -1,6 +1,6 @@
 from django.shortcuts import redirect, render, get_object_or_404
-from app.forms import ResultForm, AssignmentResultForm
-from app.models import Course, Student, Result, AssignmentResult
+from app.forms import ResultForm, AssignmentResultForm, PayoutStatementForm
+from app.models import Course, Student, Result, AssignmentResult, PayoutStatement
 
 def BASE(request):
     uploaded_courses = Course.objects.all()
@@ -121,3 +121,19 @@ def student_results(request):
     assignment_results = AssignmentResult.objects.all().select_related('student', 'assignment')
     return render(request, 'student_results.html', {'results': results, 'assignment_results': assignment_results})
 
+
+def create_payout_statement(request):
+    if request.method == 'POST':
+        form = PayoutStatementForm(request.POST, request.FILES)
+        if form.is_valid():
+            form.save()
+            return redirect('payout_statement_list')
+        else:
+            print(form.errors) 
+    else:
+        form = PayoutStatementForm()
+    return render(request, 'create_payout_statement.html', {'form': form})
+
+def payout_statement_list(request):
+    payouts = PayoutStatement.objects.all()
+    return render(request, 'payout_statement_list.html', {'payouts': payouts})
